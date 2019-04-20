@@ -3,7 +3,7 @@ package com.android.screen.utils;
 import android.graphics.Bitmap;
 import android.view.View;
 
-public class Screenshot {
+public class ScreenshotManager {
 
     public static Bitmap takescreenshot(View v) {
         v.setDrawingCacheEnabled(true);

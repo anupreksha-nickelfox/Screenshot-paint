@@ -10,9 +10,9 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Permissions {
+public class PermissionsUtils {
     public static boolean checkPermissions(Context context) {
-        String []permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        String permissions[] = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         int result;
         List<String> listPermissionsNeeded = new ArrayList<>();
         for (String p : permissions) {

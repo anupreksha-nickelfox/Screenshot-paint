@@ -16,11 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.android.screen.databinding.ActivityDrawingBinding;
-import com.android.screen.databinding.ActivityMainBinding;
-import com.android.screen.utils.Permissions;
+import com.android.screen.utils.PermissionsUtils;
 import com.android.screen.R;
 
 import java.io.OutputStream;
@@ -38,7 +36,8 @@ public class DrawingActivity extends AppCompatActivity implements View.OnTouchLi
     Bitmap resizedBitmap;
     Canvas canvas;
     Paint paint;
-    float downx = 0, downy = 0, upx = 0, upy = 0;
+    float downX = 0, downY = 0, upX = 0, upY = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class DrawingActivity extends AppCompatActivity implements View.OnTouchLi
                             getByteArrayExtra(SCREENSHOT_BITMAP).length);
         }
 
-        Permissions.checkPermissions(DrawingActivity.this);
+        PermissionsUtils.checkPermissions(DrawingActivity.this);
 
         mutableBitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
@@ -84,7 +83,7 @@ public class DrawingActivity extends AppCompatActivity implements View.OnTouchLi
     }
 
 
-    public void onSave(View view) {
+    public void Save(View view) {
         ContentValues contentValues = new ContentValues(3);
         contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, new SimpleDateFormat(DATE_PATTERN).format(new Date()));
 
@@ -105,21 +104,21 @@ public class DrawingActivity extends AppCompatActivity implements View.OnTouchLi
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                downx = event.getX();
-                downy = event.getY();
+                downX = event.getX();
+                downY = event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                upx = event.getX();
-                upy = event.getY();
-                canvas.drawLine(downx, downy, upx, upy, paint);
+                upX = event.getX();
+                upY = event.getY();
+                canvas.drawLine(downX, downY, upX, upY, paint);
                 binding.imageViewDraw.invalidate();
-                downx = upx;
-                downy = upy;
+                downX = upX;
+                downY = upY;
                 break;
             case MotionEvent.ACTION_UP:
-                upx = event.getX();
-                upy = event.getY();
-                canvas.drawLine(downx, downy, upx, upy, paint);
+                upX = event.getX();
+                upY = event.getY();
+                canvas.drawLine(downX, downY, upX, upY, paint);
                 binding.imageViewDraw.invalidate();
                 break;
             case MotionEvent.ACTION_CANCEL:

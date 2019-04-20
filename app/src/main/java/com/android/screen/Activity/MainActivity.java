@@ -6,11 +6,10 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.android.screen.R;
 import com.android.screen.databinding.ActivityMainBinding;
-import com.android.screen.utils.Screenshot;
+import com.android.screen.utils.ScreenshotManager;
 
 import java.io.ByteArrayOutputStream;
 
@@ -28,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         main = getWindow().getDecorView().getRootView();
     }
 
-    public void onCaptureScreen(View v){
-        Bitmap b = Screenshot.takescreenshotOfRootView(main);
+    public void CaptureScreen(View v){
+        Bitmap b = ScreenshotManager.takescreenshotOfRootView(main);
         binding.imageView.setImageBitmap(b);
         Intent intent = new Intent(this, DrawingActivity.class);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
