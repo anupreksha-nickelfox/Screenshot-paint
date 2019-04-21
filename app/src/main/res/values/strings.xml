@@ -2,4 +2,6 @@
     <string name="app_name">Screen</string>
     <string name="capture_screen">Capture Screen</string>
     <string name="save">Save</string>
+    <string name="done">Done</string>
+    <string name="Brush">Brush</string>
 </resources>

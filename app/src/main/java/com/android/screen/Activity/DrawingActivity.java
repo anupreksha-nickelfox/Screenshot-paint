@@ -61,10 +61,12 @@ public class DrawingActivity extends AppCompatActivity implements View.OnTouchLi
         paint = new Paint();
 
         paint.setColor(0xFFFF0000);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(20);
+        //paint.setStyle(Paint.Style.STROKE);
+        //paint.setStrokeJoin(Paint.Join.ROUND);
+        //paint.setStrokeCap(Paint.Cap.ROUND);
+       // paint.setStrokeWidth(14);
+        paint.setTextSize(12);
+        canvas.drawText("Testing...", 40, 40, paint);
 
         binding.imageViewDraw.setOnTouchListener(this);
 

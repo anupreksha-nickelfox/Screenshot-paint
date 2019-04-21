@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.android.screen.EditImageActivity;
 import com.android.screen.R;
 import com.android.screen.databinding.ActivityMainBinding;
 import com.android.screen.utils.ScreenshotManager;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void CaptureScreen(View v){
         Bitmap b = ScreenshotManager.takescreenshotOfRootView(main);
         binding.imageView.setImageBitmap(b);
-        Intent intent = new Intent(this, DrawingActivity.class);
+        Intent intent = new Intent(this, EditImageActivity.class);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         b.compress(Bitmap.CompressFormat.PNG, 50, stream);
         byte[] bytes = stream.toByteArray();
