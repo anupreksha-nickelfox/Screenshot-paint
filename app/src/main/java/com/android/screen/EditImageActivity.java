@@ -50,13 +50,11 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
     private PhotoEditor mPhotoEditor;
     private PhotoEditorView mPhotoEditorView;
     private PropertiesBSFragment mPropertiesBSFragment;
-    private TextView mTxtCurrentTool;
     private Typeface mWonderFont;
     private RecyclerView mRvTools;
     private EditingToolsAdapter mEditingToolsAdapter = new EditingToolsAdapter(this);
     private ConstraintLayout mRootView;
     private ConstraintSet mConstraintSet = new ConstraintSet();
-    private boolean mIsFilterVisible;
 
 
     @Override
