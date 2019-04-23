@@ -3,7 +3,9 @@ package com.android.screen.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private View main;
     ActivityMainBinding binding;
+    Bitmap b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +32,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CaptureScreen(View v){
-        Bitmap b = ScreenshotManager.takescreenshotOfRootView(main);
-        binding.imageView.setImageBitmap(b);
-        Intent intent = new Intent(this, EditImageActivity.class);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        b.compress(Bitmap.CompressFormat.PNG, 50, stream);
-        byte[] bytes = stream.toByteArray();
-        intent.putExtra(SCREENSHOT_BITMAP,bytes);
-        startActivity(intent);
-        finish();
+        //Bitmap b = ScreenshotManager.takescreenshotOfRootView(main);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                b = ScreenshotManager.screenShot(main);
+                binding.imageView.setImageBitmap(b);
+                Intent intent = new Intent(MainActivity.this, EditImageActivity.class);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                b.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                byte[] bytes = stream.toByteArray();
+                intent.putExtra(SCREENSHOT_BITMAP,bytes);
+                startActivity(intent);
+                finish();
+            }
+        },500);
+
+
     }
+
 }
