@@ -32,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CaptureScreen(View v){
-        //Bitmap b = ScreenshotManager.takescreenshotOfRootView(main);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
                 b = ScreenshotManager.screenShot(main);
                 binding.imageView.setImageBitmap(b);
                 Intent intent = new Intent(MainActivity.this, EditImageActivity.class);
@@ -45,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(SCREENSHOT_BITMAP,bytes);
                 startActivity(intent);
                 finish();
-            }
-        },500);
-
-
     }
 
 }
