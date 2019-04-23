@@ -96,6 +96,7 @@ public class TextEditorDialogFragment extends DialogFragment {
             }
         });
         addTextColorPickerRecyclerView.setAdapter(colorPickerAdapter);
+        mAddTextEditText.requestFocus();
         mAddTextEditText.setText(getArguments().getString(EXTRA_INPUT_TEXT));
         mColorCode = getArguments().getInt(EXTRA_COLOR_CODE);
         mAddTextEditText.setTextColor(mColorCode);
