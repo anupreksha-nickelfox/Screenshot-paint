@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.screen.EditImageActivity;
 import com.android.screen.R;
+import com.android.screen.ShakeService;
 import com.android.screen.databinding.ActivityMainBinding;
 import com.android.screen.utils.ScreenshotManager;
 import com.android.screen.utils.ShakeDetector;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         main = getWindow().getDecorView().getRootView();
+       /* Intent intent = new Intent(this, ShakeService.class);
+        //Start Service
+        startService(intent);*/
+
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -45,27 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onShake(int count) {
-                /*
-                 * The following method, "handleShakeEvent(count):" is a stub //
-                 * method you would use to setup whatever you want done once the
-                 * device has been shook.
-                 */
-                //tvShake.setText("Shake Action is just detected!!");
+
                 Toast.makeText(MainActivity.this, "Shaked!!!", Toast.LENGTH_SHORT).show();
-                b = ScreenshotManager.screenShot(main);
-                binding.imageView.setImageBitmap(b);
-                Intent intent = new Intent(MainActivity.this, EditImageActivity.class);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                b.compress(Bitmap.CompressFormat.PNG, 50, stream);
-                byte[] bytes = stream.toByteArray();
-                intent.putExtra(SCREENSHOT_BITMAP,bytes);
-                startActivity(intent);
-                finish();
+                captureScreen();
             }
         });
     }
 
-    public void CaptureScreen(View v){
+    public void captureScreen(){
                 b = ScreenshotManager.screenShot(main);
                 binding.imageView.setImageBitmap(b);
                 Intent intent = new Intent(MainActivity.this, EditImageActivity.class);

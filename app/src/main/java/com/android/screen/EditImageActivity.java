@@ -19,6 +19,7 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -80,8 +81,14 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
                             getByteArrayExtra(SCREENSHOT_BITMAP).length);
         }
 
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(b, (int) (getResources().getDimension(R.dimen.width) / getResources().getDisplayMetrics().density),
-                (int) (getResources().getDimension(R.dimen.height) / getResources().getDisplayMetrics().density),false);
+        DisplayMetrics metrics = new DisplayMetrics();
+
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int height = metrics.heightPixels;
+        int width = metrics.widthPixels;
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(b, width,
+                (int) 3*height/4,false);
         Drawable drawable = new BitmapDrawable(getResources(),resizedBitmap);
         mPhotoEditorView.getSource().setImageDrawable(drawable);
 
