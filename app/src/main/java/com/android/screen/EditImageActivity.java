@@ -59,7 +59,7 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeFullScreen();
         setContentView(R.layout.activity_edit_image);
@@ -88,13 +88,16 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
         int height = metrics.heightPixels;
         int width = metrics.widthPixels;
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(b, width,
-                (int) 3*height/4,false);
+                (int) 2*width,false);
         Drawable drawable = new BitmapDrawable(getResources(),resizedBitmap);
         mPhotoEditorView.getSource().setImageDrawable(drawable);
 
         mPhotoEditor = new PhotoEditor.Builder(this, mPhotoEditorView)
                 .setPinchTextScalable(true)
                 .build();
+
+      /* Intent intent = new Intent(this,ShakeService.class);
+       startService(intent);*/
 
         mPhotoEditor.setOnPhotoEditorListener(this);
     }

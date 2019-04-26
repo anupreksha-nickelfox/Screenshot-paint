@@ -20,6 +20,8 @@
         android:id="@+id/photoEditorView"
         android:layout_width="0dp"
         android:layout_height="560dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
         app:layout_constraintBottom_toTopOf="@+id/rvConstraintTools"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.screen.EditImageActivity;
 import com.android.screen.R;
+import com.android.screen.ScreenBaseActivity;
 import com.android.screen.ShakeService;
 import com.android.screen.databinding.ActivityMainBinding;
 import com.android.screen.utils.ScreenshotManager;
@@ -34,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
     Bitmap b;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        main = getWindow().getDecorView().getRootView();
-       /* Intent intent = new Intent(this, ShakeService.class);
-        //Start Service
-        startService(intent);*/
+        Intent intent = new Intent(this,ShakeService.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startService(intent);
+        /*main = getWindow().getDecorView().getRootView();
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+       /* mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mShakeDetector = new ShakeDetector();
@@ -54,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Shaked!!!", Toast.LENGTH_SHORT).show();
                 captureScreen();
             }
-        });
+        });*/
     }
 
-    public void captureScreen(){
+    /*public void captureScreen(){
                 b = ScreenshotManager.screenShot(main);
                 binding.imageView.setImageBitmap(b);
                 Intent intent = new Intent(MainActivity.this, EditImageActivity.class);
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
     }
 
-    @Override
+   /* @Override
     public void onResume() {
         super.onResume();
         // Add the following line to register the Session Manager Listener onResume
@@ -81,6 +82,6 @@ public class MainActivity extends AppCompatActivity {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
-    }
+    }*/
 
 }
